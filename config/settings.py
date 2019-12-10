@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 이 패키지는 application취급
     'blog',
+
 ]
 
 MIDDLEWARE = [
