@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     # shell_plus를 쓰기 위한 library
     'django_extensions',
     'blog',
-
 ]
 
 MIDDLEWARE = [
