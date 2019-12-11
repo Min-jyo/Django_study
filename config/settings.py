@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # pypi패키지
+    # shell_plus를 쓰기 위한 library
+    'django_extensions',
     'blog',
 
 ]
