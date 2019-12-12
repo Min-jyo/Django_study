@@ -58,3 +58,16 @@ def post_detail(request, pk):
     # 3. 이 context변수를 render의 3번째 인자로 전달
     # 4. post_detail.html에서는 전달받은 'post'변수의 title, author, text, created_date, published_date를 적절히 출력해준다
     return render(request, 'post_detail.html', context)
+
+
+def post_add(request):
+    print(request)
+    # URL:      /posts/add/
+    # View:     이 함수
+    # Template: post_add.html
+    #  form태그 내부에
+    #   input한개, textarea한개, button[type=submit]한개
+
+    # base.html의 nav안에 /posts/add/로의 링크 하나 추가
+    #  링크 텍스트: Post Add
+    return render(request, 'post_add.html')
