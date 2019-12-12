@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 
 from blog.models import Post
 
@@ -23,15 +24,34 @@ def post_list(request):
     return render(request, 'post_list.html', context)
 
 
-def post_detail(request):
+def post_detail(request, pk):
+    print('post_detail request', request)
+    print('post_detail pk', pk)
+
     # URL:      /post-detail/
     # View:     post_detail (이 함수)
     # Template: post_detail.html
     #  내용으로 <h1>Post Detail!</h1>을 갖도록 함
 
     # 1. 전체 Post목록(Post전체 QuerySet) 중 [0]번 index에 해당하는 Post객체 하나를 post 변수에 할당
-    post = Post.objects.all()[0]
+    # post = Post.objects.all()[0]
     # 2. 'context'라는 이름의 dict를 만들며, 'post' key에 위 post변수를 value로 사용한다
+
+    # 이 view함수의 매개변수로 전달되는 'pk'를 사용해서
+    #  전달받은 'pk'값이 자신의 'pk' DB Column값과 같은 Post를 post변수에 지정
+    #  이후 pk에 따라 /post-detail/에 접근했을 때, 다른 Post가 출력되는지 확인
+    # posts = Post.objects.filter(pk=pk)
+    # post = posts[0]
+
+    # try-except구문을 사용해서
+    # pk에 해당하는 Post가 없는 경우, HttpResponse('없음')을 돌려주도록 함
+
+    # try:
+    #     post = Post.objects.get(pk=pk)
+    # except:
+    #     return HttpResponse('없음')
+    post = get_object_or_404(Post, pk=pk)
+
     context = {
         'post': post,
     }
