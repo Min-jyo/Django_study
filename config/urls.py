@@ -1,5 +1,4 @@
 """config URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
@@ -16,11 +15,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from blog.views import post_list
+from blog.views import post_list, post_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # post-list라는 URL에 온 요청은
-    # blog.views.post_list함수가 처리한다.
+    # blog.views.post_list함수가 처리한다
     path('post-list/', post_list),
+    path('post-detail/', post_detail),
 ]
