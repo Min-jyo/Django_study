@@ -24,6 +24,7 @@ def post_list(request):
     }
     return render(request, 'post_list.html', context)
 
+
 def post_detail(request, pk):
     print('post_detail request', request)
     print('post_detail pk', pk)
@@ -61,32 +62,31 @@ def post_detail(request, pk):
 
 
 def post_add(request):
+    # 요청의 method에 따라서 분기
     if request.method == 'POST':
         # request.POST에 담긴 title, text를
         # HttpResponse를 사용해서 적절히 리턴
-        # title: <입력받은 제목>, text: <입력받은 텍스트>
-        # 위와 같은 문자열을 리턴해주도록 한다.
-        print(request)
+        #  title: <입력받은 제목>, text: <입력받은 텍스트>
+        # 위와 같은 문자열을 리턴해주도록 한다
         author = request.user
         title = request.POST['title']
         text = request.POST['text']
-        print(title, text)
 
         # 위 3개의 값을 사용해서
         # 새로운 Post를 생성
         # 생성한 Post의 title과 created_date를 HttpResponse에 적절한 문자열로 전달
-        # 출력 예) title: 파이썬, created_date: <적당한 값>
+        #  출력 예) title: 파이썬, created_date: <적당한값>
         post = Post.objects.create(
             author=author,
             title=title,
             text=text,
         )
         result = f'title: {post.title}, created_date: {post.created_date}'
+
         # post_list_url = reverse('url-name-post-list')
         # return HttpResponseRedirect(post_list_url)
         return redirect('url-name-post-list')
     else:
-
         # URL:      /posts/add/
         # View:     이 함수
         # Template: post_add.html
@@ -96,3 +96,37 @@ def post_add(request):
         # base.html의 nav안에 /posts/add/로의 링크 하나 추가
         #  링크 텍스트: Post Add
         return render(request, 'post_add.html')
+
+
+def post_delete(request, pk):
+    # pk에 해당하는 Post를 삭제한다
+    # 삭제 후에는 post_list페이지로 이동
+    pass
+
+
+def post_edit(request, pk):
+    # pk에 해당하는 Post를 수정한다
+    if request.method == 'POST':
+        # request.POST로 전달된 title, text내용을 사용해서
+        #  pk에 해당하는 Post의 해당 필드를 수정하고 save()
+        #  이후 해당 Post의 post-detail화면으로 이동
+        pass
+    else:
+        # 수정할 수 있는 form이 존재하는 화면을 보여줌
+        # 화면의 form에는 pk에 해당하는 Post의 title, text값이 들어있어야 함 (수정이므로)
+        pass
+
+
+def post_publish(request, pk):
+    # pk에 해당하는 Post의 published_date를 업데이트
+    # 요청시점의 시간을 해당 Post의 published_date에 기록할 수 있도록 한다
+    # 완료후에는 post-detail로 이동
+    #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
+    pass
+
+
+def post_unpublish(request, pk):
+    # pk에 해당하는 Post의 published_date에 None을 대입 후 save()
+    # 완료후에는 post-detail로 이동
+    #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
+    pass
