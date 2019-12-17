@@ -129,12 +129,12 @@ def post_delete_confirm(request, pk):
 
 def post_delete(request, pk):
     # pk에 해당하는 Post를 삭제한다
-    # if request.method == 'POST':
-    #     post = Post.objects.get(pk=pk)
-    #     post.delete()
-    #
-    #     # 삭제 후에는 post_list페이지로 이동
-    return redirect('url-name-post-list')
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        post.delete()
+
+        # 삭제 후에는 post_list페이지로 이동
+        return redirect('url-name-post-list')
 
 
 def post_edit(request, pk):
