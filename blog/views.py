@@ -1,6 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
 
 from blog.models import Post
 
@@ -100,8 +98,12 @@ def post_add(request):
 
 def post_delete(request, pk):
     # pk에 해당하는 Post를 삭제한다
-    # 삭제 후에는 post_list페이지로 이동
-    pass
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        post.delete()
+
+        # 삭제 후에는 post_list페이지로 이동
+        return redirect('url-name-post-list')
 
 
 def post_edit(request, pk):
