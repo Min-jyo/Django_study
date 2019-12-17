@@ -147,6 +147,14 @@ def post_edit(request, pk):
     else:
         # 수정할 수 있는 form이 존재하는 화면을 보여줌
         # 화면의 form에는 pk에 해당하는 Post의 title, text값이 들어있어야 함 (수정이므로)
+
+        post = Post.objects.get(pk=pk)
+
+        context = {
+            'post': post,
+        }
+
+        return render(request, 'post_edit.html', context)
         pass
 
 

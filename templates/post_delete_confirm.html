@@ -10,8 +10,8 @@
         </ul>
         <form action="{% url 'url-name-post-delete' pk=post.pk %}" method="POST">
             {% csrf_token %}
-            <button class=""btn btn-danger b로tn-sm>삭제</button>
+            <button class="btn btn-danger btn-sm">삭제</button>
         </form>
-        <a href="{% url 'url-name-post-list' %}" class="btn btn-secondary btn-sm">목록화면으</a>
+        <a href="{% url 'url-name-post-list' %}" class="btn btn-secondary btn-sm">목록화면으로</a>
     </div>
 {% endblock %}
