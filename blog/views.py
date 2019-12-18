@@ -170,6 +170,7 @@ def post_publish(request, pk):
     # 요청시점의 시간을 해당 Post의 published_date에 기록할 수 있도록 한다
     # 완료후에는 post-detail로 이동
     #  결과를 볼 수 있도록, 리스트 및 디테일 화면에서 published_date도 출력하도록 한다
+
     pass
 
 
